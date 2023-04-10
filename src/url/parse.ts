@@ -41,6 +41,10 @@ interface URL2Location {
    * URL 中端口号
    */
   port: string
+  /**
+   * 协议 + ip + 端口
+   */
+  origin: string
 }
 
 export function parse (url: string): URL2Location | undefined {
@@ -85,6 +89,9 @@ export function parse (url: string): URL2Location | undefined {
 
   // 获取 hostname
   location.hostname = url
+
+  // 获取 origin
+  location.origin = location.protocol + '//' + location.host
 
   return location
 }
