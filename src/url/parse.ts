@@ -47,15 +47,28 @@ interface URL2Location {
   origin: string
 }
 
-export function parse (url: string): URL2Location | undefined {
+export function parse (url: string): URL2Location {
+  const location: URL2Location = Object.create(null)
+
+  Object.assign(location, {
+    href: '',
+    protocol: '',
+    hash: '',
+    search: '',
+    pathname: '',
+    host: '',
+    hostname: '',
+    port: '',
+    origin: ''
+  })
+
   if (typeof url !== 'string') {
     TypeError('url 类型必须是字符串类型')
-    return
+    return location
   }
 
   url = trimLeft(url)
   url = url.replace(CRHTLF, '')
-  const location: URL2Location = Object.create(null)
 
   location.href = url
 
