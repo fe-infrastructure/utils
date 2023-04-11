@@ -47,6 +47,11 @@ interface URL2Location {
   origin: string
 }
 
+/**
+ * 将 url 解析成 Location
+ * @param {string} url
+ * @returns {URL2Location}
+ */
 export function parse (url: string): URL2Location {
   const location: URL2Location = Object.create(null)
 
