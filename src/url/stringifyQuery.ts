@@ -1,11 +1,5 @@
-import type { LocationQueryValue } from './parseQuery'
 
-export type LocationQueryValueRaw = LocationQueryValue | number | undefined
-
-export type LocationQueryRaw = Record<
-  string | number,
-  LocationQueryValueRaw | LocationQueryValueRaw[]
->
+import type { LocationQueryRaw, LocationQueryValueRaw } from './types'
 
 export function stringifyQuery (query: LocationQueryRaw): string {
   let search = ''
@@ -13,7 +7,6 @@ export function stringifyQuery (query: LocationQueryRaw): string {
     const value = query[key]
     key = encodeQueryKey(key)
     if (value == null) {
-      // only null adds the value
       if (value !== undefined) {
         search += (search.length ? '&' : '') + key
       }

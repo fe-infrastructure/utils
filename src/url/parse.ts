@@ -1,3 +1,4 @@
+import type { URL2Location, Operator } from './types'
 // 以空格、制表符、换行符和其他 Unicode 空白字符开头的字符
 // eslint-disable-next-line no-control-regex
 const controlOrWhitespace = /^[\x00-\x20\u00a0\u1680\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff]+/
@@ -7,45 +8,6 @@ const CRHTLF = /[\n\r\t]/g
 
 // 匹配协议
 const protocolReg = /^([a-z][a-z0-9.+-]*:)?(\/\/)?([\\/]+)?([\S\s]*)/i
-
-interface URL2Location {
-  /**
-   * 传入的原始地址
-   */
-  href: string
-  /**
-   * URL 中 scheme 协议
-   */
-  protocol: string
-  /**
-   * URL 中 # 后面的所有字符
-   */
-  hash: string
-  /**
-   * URL 中 ? 后面的参数
-   */
-  search: string
-  /**
-   * URL 中的路径
-   */
-  pathname: string
-  /**
-   * URL 中 （IP + 端口号） / 域名
-   */
-  host: string
-  /**
-   * URL 中 IP / 域名
-   */
-  hostname: string
-  /**
-   * URL 中端口号
-   */
-  port: string
-  /**
-   * 协议 + ip + 端口
-   */
-  origin: string
-}
 
 /**
  * 将 url 解析成 Location
@@ -127,8 +89,6 @@ function extractProtocol (url: string) {
     rest: match![4]
   }
 }
-
-type Operator = '#' | '?' | '/'
 
 /**
  * 提取 operator 相关的信息

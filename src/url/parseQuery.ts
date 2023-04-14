@@ -1,9 +1,4 @@
-export type LocationQueryValue = string | null
-
-export type LocationQuery = Record<
-  string,
-  LocationQueryValue | LocationQueryValue[]
->
+import type { LocationQuery } from './types'
 
 const PLUS_RE = /\+/g
 
